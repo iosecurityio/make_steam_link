@@ -1,21 +1,24 @@
-"""make_steam_link.py creates hyperlinks for use in steam messages."""
-#!python3
+"""
+Name: make_steam_link.py
+Author: Allen Montgomery, IO Security
+Version: 0.0.2
+Purpose: Creates hyperlinks for use in Steam chat messages.
+"""
 
 import sys
 from colorama import Fore
 
-##### START CONFIGURATION #####
 # Configure your URL to generate here
 SUBDOMAIN = "oo."
 DOMAIN = "ok"
 SUBDOMAIN_COUNT = 1
-# If you want to turn a Steam message into a hyperlink mess,
-# This is your place. Configure your message to linkify here:
-MSG_TO_LINKIFY = "This message will have been linkified"
-# You can just run the script now from here :)
-###### END CONFIGURATION ######
 
-##### START CONSTRAINTS #####
+# Configure your message to linkify here:
+# If you want to turn a Steam message into a hyperlink mess, this is your place.
+MSG_TO_LINKIFY = "This message will have been linkified"
+# You can just run the script now from here, unless you want to test constraints
+
+# Constraints
 STEAM_MAX_SUBDOMAIN_NAME_CHARS = 63
 # The max amount of subdomains seems to vary depending on the length of the subdomain
 # All of the below have been witnessed
@@ -27,7 +30,6 @@ STEAM_MAX_SUBDOMAINS = 31
 STEAM_MAX_MESSAGE_CHARS = 5000
 # The overall maximum amount of subdomains allowed in a URL
 MAXIMUM_SUBDOMAINS = 500
-##### END CONSTRAINTS #####
 
 
 def make_steam_hyperlink(
@@ -105,7 +107,7 @@ def truncate_message(
 
 
 def linkify(message=MSG_TO_LINKIFY):
-    """Linkifies your message"""
+    """Converts a string of text, a message, into a hyperlinked version"""
 
     # Split the message into words
     words = message.split(" ")

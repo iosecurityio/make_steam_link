@@ -1,14 +1,20 @@
 # make_steam_link.py
 
-Steam will automatically create a hyperlink in a message if it detects a valid URL scheme. This has gotten a little lenient and now doesn't even require the `https://` protocol. This scheme is just 2 characters, a period, and 2 more characters (ie. a small hostname and a small Top Level Domain). These are also inherently given an `http://` protocol, but thats a different story.
+Steam will automatically create a hyperlink in a chat message if it detects a valid URI scheme. This has gotten a little lenient and now doesn't even require defining a protocol like `https://`. This scheme is just 2 characters: `ab`, a period: `.` , and 2 more characters: `ab` (i.e. a small hostname and a small Top Level Domain) to equal `ab.ab`. That's it. These are also inherently given an `http://` protocol, but that's a different story.
 
-This script creates tests for hyperlinks in a Steam chat message. Change the configuration settings at the top of the script for testing.
+This script creates hyperlinks that you can copy and paste into Steam chat messages for testing purposes. Change the configuration settings at the top of the script for testing, and just run it. Copy and Paste the output in your Steam chats and enjoy all of the things to click on. 🔗 
+
+## tl;dr
+
+Makes annoying hyperlinked messages to copy/paste into Steam chats. 💬
 
 ## Usage
 
 1. Edit the file `make_steam_link.py`
 
-1. Run the file `python3 make_steam_link.py`
+2. Save your changes
+
+3. Run the file `python3 make_steam_link.py`
 
 ## Example Output
 The largest available hyperlink I've been able to make is 1986 characters with the following output:
@@ -36,7 +42,7 @@ Total Message Length: 5 / 5000
 oo.ok
 ```
 
-and finally, linkified text will turn every word that is >= 4 characters long into a hyperlink. For example:
+and finally, **linkified** text will turn every word that is >= 4 characters long into a hyperlink. For example:
 
 ```shell
 [*] Linkified message:
@@ -52,11 +58,11 @@ I need to fix some vernacular for referring to the parts of a URL. I'm using "Su
 
 ## Valid Links
 
-![Hyperlinks](./static/example_links.png)
+![Example Hyperlinks](./static/example_links.png)
 
-![Linkified](./static/linkified_message.png)
+![Linkified message](./static/linkified_message.png)
 
-![Linkified](./static/big_link.png)
+![A Large Link](./static/big_link.png)
 
 - `ha.ha`
 
@@ -72,32 +78,38 @@ I need to fix some vernacular for referring to the parts of a URL. I'm using "Su
 
 - `abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabc.ab`
 
-- ... and nearly all of your favorite 4 letter words that end in `ck`, `nt`, `ss`, etc.
+- ... and nearly all of your favorite 4-letter words that end in `ck`, `nt`, `ss`, etc.
 
 - The possibilities are endless!
 
 ### Constraints
 
+There are a few constraints that I've found, some are still being tested:
+
 - The Subdomain can not be longer than 63 characters long
+
+  - I have notes of 126 maximum characters, but I can't seem to reproduce that. That's exactly 2x.
 
 - The amount of subdomains is limited to 31
 
-  - I have notes of 126 maximum characters, but I can't seem to reproduce that.
-
   - I also have notes of only being allowed 15 subdomains
 
-  - The maximum amount of subdomains possible is capped at 500. Steam doesn't come close to that.
+  - The maximum amount of subdomains possible on the internet is capped at 500 so Steam doesn't come close to that.
 
 - The Top Level Domain has to be valid, or on an allow list of sorts.
 
-- Steams character count for a message is 5000 characters.
+- Steams character count for a message is capped at **5000 characters**.
 
-### Final Notes
+### Updates, Notes, and TODOs
 
 - Update: You can now Linkify your Steam messages. Example output above.
+
+- NOTE: The constraints need to be ironed out more. Do they differentiate domain from subdomain? Lengths? etc.
 
 - TODO: Add more tests and more research into what I'm doing with my life.
 
 - TODO: Clean up vernacular around subdomain/domain/hostname.
 
 - TODO: Refactor into a class and add more functionality.
+
+- TODO: Make friends mad.
